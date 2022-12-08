@@ -36,13 +36,13 @@ public class TestController {
         ressource.setAllowNoPort(false);
         this.getAllowedURLs().add(ressource);
 
-        SSRFRemoteRessource ressource2 = new SSRFRemoteRessource();
+        /*SSRFRemoteRessource ressource2 = new SSRFRemoteRessource();
         ressource2.setAllowedHost("google.com");
         ressource2.setAllowedPorts(List.of(80, 443));
         ressource2.setAllowedProtocols(List.of("http", "https"));
         ressource2.setAllowedPaths(List.of(""));
         ressource2.setAllowNoPort(true);
-        this.getAllowedURLs().add(ressource2);
+        this.getAllowedURLs().add(ressource2);*/
     }
 
     @GetMapping("/wrong")
@@ -55,12 +55,11 @@ public class TestController {
 
             return ResponseEntity.ok("Unsecured ressource: " + body);
         } catch(Exception e){
-            System.out.println(e.getClass().getCanonicalName());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 
-    @GetMapping("/good")
+    @GetMapping("/correct")
     public ResponseEntity<String> good(@RequestParam String location) {
         try{
             URL url = new URL(location);
@@ -77,7 +76,7 @@ public class TestController {
             }
 
             //Ressource not valid
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Forbidden remote ressource");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Forbidden remote ressource: " + location);
         } catch(Exception e){
             System.out.println(e.getClass().getCanonicalName());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());

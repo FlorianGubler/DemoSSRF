@@ -1,27 +1,34 @@
+//Good End Ressource (Secure)
 GET http://localhost:8080/api/end/good HTTP/1.0
 
 ###
 
+//Bad End Ressource (Unsecure)
 GET http://localhost:8080/api/end/bad HTTP/1.0
 
 ###
 
+//Wrong Implementation requests good endpoint
 GET http://localhost:8080/api/data/wrong?location=http://localhost:8080/api/end/good HTTP/1.0
 
 ###
 
+//Wrong Implementation requests bad endpoint
 GET http://localhost:8080/api/data/wrong?location=http://localhost:8080/api/end/bad HTTP/1.0
 
 ###
 
-GET http://localhost:8080/api/data/good?location=http://localhost:8080/api/end/good HTTP/1.0
+//Correct implementation requests good endpoint
+GET http://localhost:8080/api/data/correct?location=http://localhost:8080/api/end/good HTTP/1.0
 
 ###
 
-GET http://localhost:8080/api/data/good?location=http://localhost:8080/api/end/bad HTTP/1.0
+//Correct implementation requests bad endpoint
+GET http://localhost:8080/api/data/correct?location=http://localhost:8080/api/end/bad HTTP/1.0
 
 ###
 
-GET http://localhost:8080/api/data/good?location=http://google.com HTTP/1.0
+//Correct Implementation requests external ressource
+GET http://localhost:8080/api/data/correct?location=http://google.com HTTP/1.0
 
 ###
