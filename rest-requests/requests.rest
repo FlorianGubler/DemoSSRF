@@ -1,0 +1,27 @@
+GET http://localhost:8080/api/end/good HTTP/1.0
+
+###
+
+GET http://localhost:8080/api/end/bad HTTP/1.0
+
+###
+
+GET http://localhost:8080/api/data/wrong?location=http://localhost:8080/api/end/good HTTP/1.0
+
+###
+
+GET http://localhost:8080/api/data/wrong?location=http://localhost:8080/api/end/bad HTTP/1.0
+
+###
+
+GET http://localhost:8080/api/data/good?location=http://localhost:8080/api/end/good HTTP/1.0
+
+###
+
+GET http://localhost:8080/api/data/good?location=http://localhost:8080/api/end/bad HTTP/1.0
+
+###
+
+GET http://localhost:8080/api/data/good?location=http://google.com HTTP/1.0
+
+###
